@@ -1,10 +1,11 @@
 export {RouteDispatcher} from './RouteDispatcher';
-export {RouteService} from './RouteService';
+export {RouteService, IRouteEventPayload, routePathBuilder} from './RouteService';
 export {RouteServiceModule} from './RouteServiceModule';
 export {
     AppStateRoute,
     IAppStateRoute,
     IAppStateRouteSnapshot,
     IAppStateRouteConfig,
-    IAppStateRouteData
+    IAppStateRouteData,
+    DEFAULT_ROUTER_PATH
 } from './RouteState';
