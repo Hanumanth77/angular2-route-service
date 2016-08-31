@@ -40,8 +40,11 @@ export class RouteServiceModuleFactory {
 document.addEventListener("DOMContentLoaded", () => {
     const location = window.location;
 
-    // queryParams -> params
-    location.assign(location.hash
-        .replace(/\/\?/g, ';')
-        .replace(/[?&]/g, ';'));
+    // prevent infinity redirect
+    if (location.hash.length) {
+        // queryParams -> params
+        location.assign(location.hash
+            .replace(/\/\?/g, ';')
+            .replace(/[?&]/g, ';'));
+    }
 });
