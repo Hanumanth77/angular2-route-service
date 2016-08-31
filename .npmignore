@@ -1,0 +1,14 @@
+.idea
+.git
+.npmignore
+
+config
+typings
+node_modules
+
+*.log
+*.tgz
+
+src/*.js
+src/*.js.map
+karma.conf.js
