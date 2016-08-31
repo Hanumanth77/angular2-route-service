@@ -140,13 +140,3 @@ const ROUTER_PATH_SEPARATOR:string = '/';
 export function routePathBuilder(...args:Array<string>) {
     return args.join(ROUTER_PATH_SEPARATOR);
 }
-
-// before Angular2 router code will be executed
-document.addEventListener("DOMContentLoaded", () => {
-    const location = window.location;
-
-    // queryParams -> params
-    location.assign(location.hash
-        .replace(/\/\?/g, ';')
-        .replace(/[?&]/g, ';'));
-});
