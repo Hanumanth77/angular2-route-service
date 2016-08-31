@@ -1,4 +1,4 @@
-export {RouteDispatcher} from './RouteDispatcher';
+export {RouteDispatcher, IRouteDispatcher} from './RouteDispatcher';
 export {RouteService, IRouteEventPayload, routePathBuilder} from './RouteService';
 export {RouteServiceModule} from './RouteServiceModule';
 export {
