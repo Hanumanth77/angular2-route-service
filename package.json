@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "clean": "npm cache clean",
-    "typings-install": "typings install",
+    "typings-install": "node \"node_modules/typings/dist/bin.js\" \"install\"",
     "postinstall": "npm run typings-install",
-    "deploy": "npm install && tsc && npm publish ./"
+    "deploy": "npm install && node \"node_modules/typescript/tsc.js\" && npm publish ./"
   },
   "peerDependencies": {
     "@angular/core": "~2.0.0-rc.5",
