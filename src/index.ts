@@ -1,5 +1,5 @@
 export {RouteDispatcher, IRouteDispatcher} from './RouteDispatcher';
-export {RouteService, IRouteEventPayload, routePathBuilder} from './RouteService';
+export {RouteService, IRouteEventPayload, buildRoutePath} from './RouteService';
 export {RouteServiceModuleFactory} from './RouteServiceModule';
 export {
     AppStateRoute,

@@ -77,6 +77,8 @@ export class NgRouteService extends RouteService {
         return {
             path: this.router.url,                                              // "/page1/page2;q=1"
             name: activatedRoute.pathFromRoot
+                // We have to observe the route tree and get full path from the leaf to the root.
+                // The root node is empty node "" therefore we must use the filter
                 .filter((activatedRouteSnapshot:ActivatedRouteSnapshot) => activatedRouteSnapshot.url.length > 0)
                 .map((activatedRouteSnapshot:ActivatedRouteSnapshot):string => {
                     return activatedRouteSnapshot.url
@@ -95,8 +97,8 @@ export class NgRouteService extends RouteService {
      * class MyComponent {constructor(route: ActivatedRoute) {})
      *
      * because:
-      * 1. We use AppState
-      * 2. We must use the cross-profile abstraction implementation (NativeScript/Angular2)
+      * 1. We use the State
+      * 2. We have to use abstraction to replace the implementation of (NativeScript/Angular2)
      */
     private findActivatedRoute(node:ActivatedRouteSnapshot):ActivatedRouteSnapshot {
         if (isBlank(node.firstChild)) {
@@ -137,6 +139,6 @@ export class NgRouteService extends RouteService {
 
 const ROUTER_PATH_SEPARATOR:string = '/';
 
-export function routePathBuilder(...args:Array<string>) {
+export function buildRoutePath(...args:Array<string>) {
     return args.join(ROUTER_PATH_SEPARATOR);
 }
