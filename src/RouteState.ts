@@ -1,3 +1,5 @@
+import {Injectable} from '@angular/core';
+
 export type IAppStateRouteDataValue = any;
 
 export interface IAppStateRouteData {
@@ -19,6 +21,7 @@ export interface IAppStateRoute {
     navigateInProgress:boolean
 }
 
+@Injectable()
 export class AppStateRoute implements IAppStateRoute {
     routeSnapshot:IAppStateRouteSnapshot = {
         config: {},
