@@ -5,9 +5,8 @@
   "scripts": {
     "clean": "npm cache clean",
     "typings-install": "node \"node_modules/typings/dist/bin.js\" \"install\"",
-    "postinstall": "npm run typings-install",
     "tsc-build": "node \"node_modules/typescript/bin/tsc\"",
-    "deploy": "npm install && npm run tsc-build && npm publish ./"
+    "deploy": "npm install && npm run typings-install && npm run tsc-build && npm publish ./"
   },
   "peerDependencies": {
     "@angular/core": "~2.0.0-rc.5",
