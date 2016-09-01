@@ -11,7 +11,7 @@ npm install angular2-route-service --save
 
 ## Features  
 
-1. Support a [Flux](https://facebook.github.io/flux/docs/overview.html) application architecture (state, dispatcher).  
+Support a [Flux](https://facebook.github.io/flux/docs/overview.html) application architecture (state, dispatcher).  
 
 ## Publish
 
@@ -40,7 +40,7 @@ export class ApplicationModule {
 }
 ```
 
-**state.ts**
+**state.ts**  
 You can create your own State or use AppStateRoute instead. And by analogy - Dispatcher.  
 
 ```typescript
@@ -74,7 +74,7 @@ class Test {
         ...
     }
 }
-```     
+```
 
 **store.ts**  
 ```typescript
@@ -91,6 +91,8 @@ export class Store {
                 @Inject(State) private state:IAppStateRoute) {                  // Or @Inject(AppStateRoute) when RouteServiceModuleFactory.makeModule() is used.
 
         dispatcher.navigationEnd.subscribe((payload:IRouteEventPayload) => {
+            console.log(this.state.routeSnapshot);
+            
             this.dispatcher.activateApp.emit(
                 this.asyncTasksFactory.createTask(AppActivationTask) 
             );
