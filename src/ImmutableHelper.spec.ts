@@ -19,11 +19,7 @@ describe('ImmutableHelper', ()=> {
             const immutableObject = ImmutableHelper.toImmutable(source);
 
             expect(immutableObject).toEqual(source);
-            try {
-                immutableObject['c']['f']['h'] = 'hello2';
-            } catch (e) {
-                expect(e.message).toBe('Attempted to assign to readonly property.');
-            }
+            expect(function(){immutableObject['c']['f']['h'] = 'hello2'}).toThrow(new TypeError("Cannot assign to read only property 'h' of object '#<Object>'"));
         });
     });
 });
