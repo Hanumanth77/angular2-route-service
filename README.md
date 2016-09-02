@@ -111,6 +111,14 @@ export class Store {
             
             ga('send', 'pageview', payload.path);   // Google analytics
         });
+        
+        dispatcher.panelClose.subscribe(() => {
+            if (this.state.routeSnapshot.name === 'hardware') { // the current page is "http://localhost:3000/#/hardware"
+                this.routeService.go('equipment', {q:200});     // go back to the page "http://localhost:3000/#/equipment;q=200"
+            } else {
+                this.routeService.go('home');                   // go to the page "http://localhost:3000/#/home"
+            }
+        });
     }
 }
 ```
