@@ -29,7 +29,17 @@ npm run deploy
         ...
         // If your application does not have its own the state and the dispatcher
         // See AppStateRoute and RouteDispatcher
-        RouteServiceModuleFactory.makeModule()
+        RouteServiceModuleFactory.makeModule(),
+        
+        RouterModule.forRoot([
+           ...
+           {
+               path: 'equipment',
+               component: EquipmentsPage,
+               data: {configValue: 'value'}
+           },
+           ...
+        ])
         
         // Or you have the application state and the dispatcher
         // RouteServiceModuleFactory.makeModule(State, Dispatcher)
@@ -59,12 +69,14 @@ import {
 
 @Injectable()
 export class State implements IAppStateRoute {
+    // the initial state value
     routeSnapshot:IAppStateRouteSnapshot = {
-        config: {},
-        params: {},
-        name: DEFAULT_ROUTER_PATH
+        config: {},                             // runtime config = {configValue: 'value'}
+        params: {},                             // runtime params = {param1:100} when "http://localhost:3000/#/equipment;param1=100"                          
+        name: DEFAULT_ROUTER_PATH               // runtime name = 'equipment'
     };
-    navigateInProgress:boolean = false;
+    // the initial state value
+    navigateInProgress:boolean = false;         // runtime value = false | true
     ...
     // the other states of the main application
 }
