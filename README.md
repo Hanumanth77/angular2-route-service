@@ -11,13 +11,8 @@ npm install angular2-route-service --save
 
 ## Features  
 
-Support a [Flux](https://facebook.github.io/flux/docs/overview.html) application architecture (state, dispatcher).  
-
-## Publish
-
-```sh
-npm run deploy
-```
+1. Support a [Flux](https://facebook.github.io/flux/docs/overview.html) application architecture (state, dispatcher).  
+2. Allows transform queryParams to [matrix params](https://www.w3.org/DesignIssues/MatrixURIs.html) when dom content is loaded ($$PREVENT_QUERY_TRANSFORM = true allows disable the feature).  
 
 ## Use
 
@@ -72,8 +67,9 @@ export class State implements IAppStateRoute {
     // the initial state value
     routeSnapshot:IAppStateRouteSnapshot = {
         config: {},                             // runtime config = {configValue: 'value'}
-        params: {},                             // runtime params = {param1:100} when "http://localhost:3000/#/equipment;param1=100"                          
-        name: DEFAULT_ROUTER_PATH               // runtime name = 'equipment'
+        params: {},                             // runtime params = {param1:100} when "http://localhost:3000/#/equipment;param1=100"      
+        // Full route path ('path1/path2/..' when "http://localhost:3000/#/path1/path2/..")                      
+        name: DEFAULT_ROUTER_PATH               // runtime name = 'equipment'          
     };
     // the initial state value
     navigateInProgress:boolean = false;         // runtime value = false | true
@@ -103,16 +99,26 @@ export class Store {
                 @Inject(State) private state:IAppStateRoute) {                  // Or @Inject(AppStateRoute) when RouteServiceModuleFactory.makeModule() is used.
 
         dispatcher.navigationEnd.subscribe((payload:IRouteEventPayload) => {
-            console.log(this.state.routeSnapshot);
+            console.log(this.state.routeSnapshot.name);
+            console.log(this.state.routeSnapshot.params);
+            console.log(this.state.routeSnapshot.config);
             
-            this.dispatcher.activateApp.emit(
-                this.asyncTasksFactory.createTask(AppActivationTask) 
-            );
+            if (this.state.routeSnapshot.name === 'equipment') { // "http://localhost:3000/#/equipment;param1=100"
+                this.dispatcher.activateApp.emit(
+                    this.asyncTasksFactory.createTask(AppActivationTask) 
+                );
+            }
             
             ga('send', 'pageview', payload.path);   // Google analytics
         });
     }
 }
+```
+
+## Publish
+
+```sh
+npm run deploy
 ```
 
 ## License
