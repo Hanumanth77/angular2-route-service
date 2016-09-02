@@ -36,15 +36,17 @@ export class RouteServiceModuleFactory {
     }
 }
 
-// before Angular2 router code will be executed
-document.addEventListener("DOMContentLoaded", () => {
-    const location = window.location;
+if (typeof window !== 'undefined' && window['$$PREVENT_QUERY_TRANSFORM'] !== true) {
+    // before Angular2 router code will be executed
+    document.addEventListener("DOMContentLoaded", () => {
+        const location = window.location;
 
-    // prevent infinity redirect
-    if (location.hash.length) {
-        // queryParams -> params
-        location.assign(location.hash
-            .replace(/\/\?/g, ';')
-            .replace(/[?&]/g, ';'));
-    }
-});
+        // prevent infinity redirect
+        if (location.hash.length) {
+            // queryParams -> params
+            location.assign(location.hash
+                .replace(/\/\?/g, ';')
+                .replace(/[?&]/g, ';'));
+        }
+    });
+}
