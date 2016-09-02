@@ -1,6 +1,6 @@
 # angular2-route-service
 
-An implementation of router wrapper at Angular2 (RC5 compatible).
+An implementation of router wrapper at Angular2 (RC6 compatible).
 
 ## Installation
 
